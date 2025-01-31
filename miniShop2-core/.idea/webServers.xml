@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="78d50a71-eacf-4dbf-98a5-ae41cd12883b" name="test.mst" url="http://80.90.188.66">
+        <fileTransfer rootFolder="/core/components/minishop2" host="80.90.188.66" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="msoptionsedit" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB"
+       phpdoc-package="msoptionsedit"
+       version="1.1">
+
+    <object class="msOptionsEditItem" table="ms_option_edit_items" extends="xPDOSimpleObject">
+        <field key="product_id" dbtype="int" phptype="number" null="false"/>
+        <field key="option_key" dbtype="varchar" precision="255" phptype="string" null="false"/>
+        <field key="old_value" dbtype="varchar" precision="191" phptype="string" null="true" default=""/>
+        <field key="new_value" dbtype="varchar" precision="191" phptype="string" null="true" default=""/>
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="editedon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="editedby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+
+        <index alias="product_id" name="product_id" primary="false" unique="false" type="BTREE">
+            <column key="product_id" length="" collation="A" null="false"/>
+        </index>
+        <index alias="option_key" name="option_key" primary="false" unique="false" type="BTREE">
+            <column key="option_key" length="" collation="A" null="false"/>
+        </index>
+
+        <aggregate alias="Product" class="msProduct" local="product_id" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Option" class="msOption" local="option_key" foreign="key" cardinality="one" owner="foreign"/>
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="EditedBy" class="modUser" local="editedby" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+<!--    <object class="msOptionEditItemProperty" table="ms_option_edit_properties" extends="xPDOSimpleObject">-->
+<!--        <field key="option_edit_id" dbtype="int" phptype="number" null="false"/>-->
+<!--        <field key="property" dbtype="varchar" precision="191" phptype="string" null="false"/>-->
+<!--        <field key="old_value" dbtype="varchar" precision="191" phptype="string" null="false"/>-->
+<!--        <field key="new_value" dbtype="varchar" precision="191" phptype="string" null="false"/>-->
+<!--        <field key="createdon" dbtype="datetime" phptype="datetime" null="true"/>-->
+<!--        <field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"-->
+<!--               default="0"/>-->
+<!--        <field key="editedon" dbtype="datetime" phptype="datetime" null="true"/>-->
+<!--        <field key="editedby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"-->
+<!--               default="0"/>-->
+
+<!--        <index alias="Property" name="property" primary="false" unique="false" type="BTREE">-->
+<!--            <column key="property" length="" collation="A" null="false"/>-->
+<!--        </index>-->
+<!--        <index alias="OldValue" name="old_value" primary="false" unique="false" type="BTREE">-->
+<!--            <column key="old_value" length="" collation="A" null="false"/>-->
+<!--        </index>-->
+<!--        <index alias="NewValue" name="new_value" primary="false" unique="false" type="BTREE">-->
+<!--            <column key="new_value" length="" collation="A" null="false"/>-->
+<!--        </index>-->
+
+<!--        <aggregate alias="OptionEdit" class="msOptionEditItem" local="option_edit_id" foreign="id" cardinality="one" owner="foreign"/>-->
+<!--        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign"/>-->
+<!--        <aggregate alias="EditedBy" class="modUser" local="editedby" foreign="id" cardinality="one" owner="foreign"/>-->
+<!--    </object>-->
+
+    <object class="msOptionsMergeAction" table="ms_option_merge_actions" extends="xPDOSimpleObject">
+        <field key="key" dbtype="varchar" precision="191" phptype="string" null="false" default=""/>
+        <field key="name" dbtype="varchar" precision="191" phptype="string" null="false" default=""/>
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="editedon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="editedby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+
+        <index alias="Key" name="key" primary="false" unique="true" type="BTREE">
+            <column key="key" length="" collation="A" null="false"/>
+        </index>
+        <index alias="Name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="EditedBy" class="modUser" local="editedby" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+</model>
